@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:jokes_story/model/joke_twopart_model.dart';
+import 'package:jokes_story/model/joke_model.dart';
 import 'package:jokes_story/utils/preferences.dart';
 
 class Constant {

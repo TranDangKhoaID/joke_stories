@@ -3,16 +3,17 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:jokes_story/model/joke_twopart_model.dart';
+import 'package:jokes_story/model/joke_model.dart';
 import 'package:jokes_story/service/api.dart';
 import 'package:http/http.dart' as http;
 
 class AnyJokeController extends GetxController {
-  var jokeTwoPart = JokeTwoPartModel().obs;
+  var joke = JokeModel().obs;
   var isLoading = true.obs;
 
   @override
   void onInit() {
+    print('lỏ' + joke.value.joke.toString());
     getJokeTwoPartAny();
     super.onInit();
   }
@@ -24,9 +25,9 @@ class AnyJokeController extends GetxController {
       Map<String, dynamic> responseBody = json.decode(response.body);
       if (response.statusCode == 200 && responseBody['error'] == false) {
         isLoading.value = false;
-        JokeTwoPartModel model = JokeTwoPartModel.fromJson(responseBody);
+        JokeModel model = JokeModel.fromJson(responseBody);
         //String id = model.id.toString();
-        jokeTwoPart.value = model;
+        joke.value = model;
       } else if (response.statusCode == 200 && responseBody['error'] == true) {
         //joke;
         isLoading.value = false;
