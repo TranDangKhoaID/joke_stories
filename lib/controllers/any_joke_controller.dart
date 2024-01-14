@@ -13,12 +13,11 @@ class AnyJokeController extends GetxController {
 
   @override
   void onInit() {
-    print('lỏ' + joke.value.joke.toString());
-    getJokeTwoPartAny();
+    getJokeAny();
     super.onInit();
   }
 
-  Future<dynamic> getJokeTwoPartAny() async {
+  Future<dynamic> getJokeAny() async {
     try {
       isLoading.value = true;
       final response = await http.get(Uri.parse(API.getAny));
