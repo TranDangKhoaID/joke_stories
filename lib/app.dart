@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:jokes_story/pages/any_joke_screen.dart';
-import 'package:jokes_story/pages/any_joke_screen.dart';
+import 'package:jokes_story/pages/welcome_screen.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -18,7 +17,7 @@ class _AppState extends State<App> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),
-      home: AnyJokeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

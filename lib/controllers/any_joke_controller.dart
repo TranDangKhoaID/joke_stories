@@ -10,6 +10,13 @@ import 'package:http/http.dart' as http;
 class AnyJokeController extends GetxController {
   var joke = JokeModel().obs;
   var isLoading = true.obs;
+  var isFilter = false.obs;
+  var filterNSFW = false.obs;
+  var filterReligious = false.obs;
+  var filterPolitical = false.obs;
+  var filterRacist = false.obs;
+  var filterSexist = false.obs;
+  var filterExplicit = false.obs;
 
   @override
   void onInit() {
@@ -17,11 +24,16 @@ class AnyJokeController extends GetxController {
     super.onInit();
   }
 
+  void showFilter() {
+    isFilter.value = !isFilter.value;
+  }
+
   Future<dynamic> getJokeAny() async {
     try {
       isLoading.value = true;
       final response = await http.get(Uri.parse(API.getAny));
       Map<String, dynamic> responseBody = json.decode(response.body);
+
       if (response.statusCode == 200 && responseBody['error'] == false) {
         isLoading.value = false;
         JokeModel model = JokeModel.fromJson(responseBody);
@@ -54,5 +66,35 @@ class AnyJokeController extends GetxController {
       // ShowToastDialog.showToast(e.toString());
     }
     return null;
+  }
+
+  void updateFilterNSFW(bool value) {
+    filterNSFW.value = !filterNSFW.value;
+    value = filterNSFW.value;
+  }
+
+  void updateFilterReligious(bool value) {
+    filterReligious.value = !filterReligious.value;
+    value = filterReligious.value;
+  }
+
+  void updateFilterPolitical(bool value) {
+    filterPolitical.value = !filterPolitical.value;
+    value = filterPolitical.value;
+  }
+
+  void updateFilterRacist(bool value) {
+    filterRacist.value = !filterRacist.value;
+    value = filterRacist.value;
+  }
+
+  void updateFilterSexist(bool value) {
+    filterSexist.value = !filterSexist.value;
+    value = filterSexist.value;
+  }
+
+  void updateFilterExplicit(bool value) {
+    filterExplicit.value = !filterExplicit.value;
+    value = filterExplicit.value;
   }
 }
